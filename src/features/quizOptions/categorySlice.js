@@ -4,7 +4,7 @@ const categorySlice = createSlice({
   name: 'categories',
   initialState: {
     items: [],
-    selsectedCategory: null,
+    selectedCategory: null,
     loading: false,
     error: null
   },
@@ -23,7 +23,6 @@ const categorySlice = createSlice({
       state.selectedCategory = action.payload;
     }
     
-
   }
 });
 
