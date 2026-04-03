@@ -1,8 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+/** @format */
 
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "../features/counter/counterSlice";
+import categoryReducer from "../features/quizOptions/categorySlice";
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+ reducer: {
+  counter: counterReducer,
+  categories: categoryReducer,
+ },
 });
