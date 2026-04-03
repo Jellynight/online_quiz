@@ -1,20 +1,13 @@
 /** @format */
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-export const fetchQuestions = createAsyncThunk(
- "questions/getQuestions", async (amount,category,difficulty) => {
-    const response = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple&encode=base64`);   
-    const data = await response.json();
-    return data;
-  }
-);
-
+import { createSlice, current } from "@reduxjs/toolkit";
+import getQuestions from "./getQuestions";
 
 const questionSlice = createSlice({
  name: "questions",
  initialState: {
   questions: [],
   currentQuestion: null,
+  currentQuestionIndex: 0,
   loading: false,
   error: null,
  },
@@ -22,16 +15,37 @@ const questionSlice = createSlice({
   setCurrentQuestion: (state, action) => {
    state.currentQuestion = action.payload;
   },
+  nextQuestion: (state) => {
+    if (state.currentQuestionIndex < state.questions.length - 1) {
+      state.currentQuestionIndex += 1;
+      state.currentQuestion = state.questions[state.currentQuestionIndex];
+    }
+  },
   setLoading: (state, action) => {
    state.loading = action.payload;
   },
   setError: (state, action) => {
    state.error = action.payload;
   },
-
  },
+ extraReducers: (builder) => {
+  builder
+    .addCase(getQuestions.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(getQuestions.fulfilled, (state, action) => {
+      state.loading = false;
+      state.questions = action.payload.results;
+      state.currentQuestion = action.payload.results[0];
+      state.currentQuestionIndex = 0;
+    })
+    .addCase(getQuestions.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+  },
 });
 
-export const { setCurrentQuestion, setLoading, setError } =
+export const { nextQuestion, setCurrentQuestion, setLoading, setError } =
  questionSlice.actions;
 export default questionSlice.reducer;
