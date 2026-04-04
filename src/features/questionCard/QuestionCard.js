@@ -10,6 +10,7 @@ const QuestionCard = ({ quizEnded }) => {
  );
  const questions = useSelector((state) => state.questions.questions);
  const loading = useSelector((state) => state.questions.loading);
+ const currentQuestionIndex = useSelector((state) => state.questions.currentQuestionIndex);
  const dispatch = useDispatch();
  const [isActive, setIaActive] = useState(false);
 
@@ -21,6 +22,13 @@ const QuestionCard = ({ quizEnded }) => {
   // Logic to move to the next question
   dispatch(nextQuestion());
  };
+
+ function decodeHtml(html) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+  return doc.documentElement.textContent;
+}
+
 
  const allAnswers = [
   currentQuestion.correct_answer,
@@ -44,7 +52,7 @@ const QuestionCard = ({ quizEnded }) => {
 
  return (
   <div className="questionCard">
-   <h2>{currentQuestion.question}</h2>
+   <h2>{currentQuestionIndex + 1}. {decodeHtml(currentQuestion.question)}</h2>
    <h3>Is It?</h3>
    <form className="answers">
     {allAnswers.map((e) => (
@@ -54,15 +62,16 @@ const QuestionCard = ({ quizEnded }) => {
       type="button"
       value={e}
       onClick={() => handleAnswerClick(e)}>
-      {e}
+      {decodeHtml(e)}
      </button>
     ))}
    </form>
    <br></br>
-
-   <button onClick={handleClick}>Next Question</button>
-   <br></br>
-   <button onClick={handleEnd}>End Quiz</button>
+    { questions.length === currentQuestionIndex + 1 ? (
+      <button onClick={handleEnd}>End Quiz</button>
+    ) : (
+      <button onClick={handleClick}>Next Question</button>
+    )}
   </div>
  );
 };
