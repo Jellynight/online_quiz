@@ -14,29 +14,34 @@
   margin: auto;
 }
 
+.App-header span {
+  color:#704cb6;
+}
+
 button {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: rgb(112, 76, 182);
+  background-color: #704cb6;
   color: white;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   border: 2px solid black;
+  transition: background-color;
 }
 
 .answers{
  display: flex;
- 
 }
 
-.answers :active{
-  background-color: burlywood;
+.active {
+  background-color: #deb887;
 }
 
 .submitBtn :active{
   background-color: burlywood;
 }
+

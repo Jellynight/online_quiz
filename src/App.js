@@ -31,8 +31,9 @@ function App() {
    <div>
     {quizEnded ? (
      <div className="start">
-      <Results />
       <button onClick={handleReset}>Reset</button>
+      <Results />
+      
      </div>
     ) : (
      <div>

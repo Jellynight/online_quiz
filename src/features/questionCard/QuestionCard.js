@@ -1,5 +1,5 @@
 /** @format */
-
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { nextQuestion } from "./questionSlice";
 import { addAnsweredQuestion } from "../analytics/resultSlice";
@@ -11,6 +11,7 @@ const QuestionCard = ({ quizEnded }) => {
  const questions = useSelector((state) => state.questions.questions);
  const loading = useSelector((state) => state.questions.loading);
  const dispatch = useDispatch();
+ const [isActive, setIaActive] = useState(false);
 
  if (loading) return <p>Loading questions…</p>;
  if (!questions || questions.length === 0)
@@ -20,6 +21,7 @@ const QuestionCard = ({ quizEnded }) => {
   // Logic to move to the next question
   dispatch(nextQuestion());
  };
+
  const allAnswers = [
   currentQuestion.correct_answer,
   ...currentQuestion.incorrect_answers,
@@ -28,6 +30,18 @@ const QuestionCard = ({ quizEnded }) => {
  const handleEnd = () => {
   quizEnded(true);
  };
+
+ const handleAnswerClick = (answer) => {
+  setIaActive(answer);
+  dispatch(
+   addAnsweredQuestion({
+    question: currentQuestion.question,
+    answer: answer,
+    correct_answer: currentQuestion.correct_answer,
+   }),
+  );
+ };
+
  return (
   <div className="questionCard">
    <h2>{currentQuestion.question}</h2>
@@ -35,24 +49,17 @@ const QuestionCard = ({ quizEnded }) => {
    <form className="answers">
     {allAnswers.map((e) => (
      <button
-      key={e}
+      className={isActive === e ? "active" : "answer"}
+      key={e.id}
       type="button"
       value={e}
-      onClick={(e) =>
-       dispatch(
-        addAnsweredQuestion({
-         question: currentQuestion.question,
-         answer: e.target.value,
-         correct_answer: currentQuestion.correct_answer,
-        }),
-       )
-      }>
+      onClick={() => handleAnswerClick(e)}>
       {e}
      </button>
     ))}
    </form>
    <br></br>
-   
+
    <button onClick={handleClick}>Next Question</button>
    <br></br>
    <button onClick={handleEnd}>End Quiz</button>
