@@ -4,22 +4,16 @@ import QuizOptions from "./features/quizOptions/QuizOptions.js";
 import "./App.css";
 import QuestionCard from "./features/questionCard/QuestionCard.js";
 import { useState } from "react";
-import { resetScore } from "./features/analytics/resultSlice.js";
+
 import Results from "./features/analytics/Results.js";
-import { useDispatch } from "react-redux";
+
 function App() {
   const [quizEnded, setQuizEnded] = useState(false);
- const [reset, setReset] = useState(false);
-  const dispatch = useDispatch();
+  
   const handleClick = () => {
     setQuizEnded(true);
   }
 
-  const handleReset = () => {
-    setQuizEnded(false);
-    setReset(true);
-    dispatch(resetScore());
-  }
   
   return (
    <div className="App">
@@ -31,7 +25,6 @@ function App() {
       {quizEnded ? (
         <div className="start">
           <Results />
-          <button onClick={handleReset}>Reset</button>
         </div>
       ) : (
         <div>
