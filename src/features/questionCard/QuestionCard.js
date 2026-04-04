@@ -23,6 +23,13 @@ const QuestionCard = ({ quizEnded }) => {
   dispatch(nextQuestion());
  };
 
+ function decodeHtml(html) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+  return doc.documentElement.textContent;
+}
+
+
  const allAnswers = [
   currentQuestion.correct_answer,
   ...currentQuestion.incorrect_answers,
@@ -45,7 +52,7 @@ const QuestionCard = ({ quizEnded }) => {
 
  return (
   <div className="questionCard">
-   <h2>{currentQuestionIndex + 1}. {currentQuestion.question}</h2>
+   <h2>{currentQuestionIndex + 1}. {decodeHtml(currentQuestion.question)}</h2>
    <h3>Is It?</h3>
    <form className="answers">
     {allAnswers.map((e) => (
@@ -55,7 +62,7 @@ const QuestionCard = ({ quizEnded }) => {
       type="button"
       value={e}
       onClick={() => handleAnswerClick(e)}>
-      {e}
+      {decodeHtml(e)}
      </button>
     ))}
    </form>
