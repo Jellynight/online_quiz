@@ -5,18 +5,22 @@ import "./App.css";
 import QuestionCard from "./features/questionCard/QuestionCard.js";
 import { useState } from "react";
 import { resetScore } from "./features/analytics/resultSlice.js";
-
+import Results from "./features/analytics/Results.js";
+import { useDispatch } from "react-redux";
 function App() {
   const [quizEnded, setQuizEnded] = useState(false);
-  
-
+ const [reset, setReset] = useState(false);
+  const dispatch = useDispatch();
   const handleClick = () => {
     setQuizEnded(true);
-    resetScore();
   }
-  if (quizEnded) {
-    
+
+  const handleReset = () => {
+    setQuizEnded(false);
+    setReset(true);
+    dispatch(resetScore());
   }
+  
   return (
    <div className="App">
     <header className="App-header">
@@ -25,15 +29,17 @@ function App() {
     <QuizOptions quizEnded={setQuizEnded}/>
     <div>
       {quizEnded ? (
-        <div className="results">
-          <h2>Your Results</h2>
-          {/* Display results here */}
+        <div className="start">
+          <Results />
+          <button onClick={handleReset}>Reset</button>
         </div>
       ) : (
+        <div>
         <QuestionCard />
+        <button onClick={handleClick}>End Quiz</button>
+        </div>
       )}
     </div>
-    <button onClick={handleClick}>End Quiz</button>
    </div>
   );
 }

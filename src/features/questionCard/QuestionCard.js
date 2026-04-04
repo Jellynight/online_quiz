@@ -50,12 +50,6 @@ const QuestionCard = () => {
    </form>
    <br></br>
    <button onClick={handleClick}>Next Question</button>
-   <button
-    onClick={() =>
-     questions.length > 0 && questions[questions.length - 1] === currentQuestion
-    }>
-    Get Results
-   </button>
    <br></br>
   </div>
  );
