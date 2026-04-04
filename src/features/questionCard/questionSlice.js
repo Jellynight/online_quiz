@@ -27,6 +27,13 @@ const questionSlice = createSlice({
   setError: (state, action) => {
    state.error = action.payload;
   },
+  resetQuestions: (state) => {
+   state.questions = [];
+   state.currentQuestion = null;
+   state.currentQuestionIndex = 0;
+   state.loading = false;
+   state.error = null;
+  }
  },
  extraReducers: (builder) => {
   builder
@@ -46,6 +53,6 @@ const questionSlice = createSlice({
   },
 });
 
-export const { nextQuestion, setCurrentQuestion, setLoading, setError } =
+export const { nextQuestion, setCurrentQuestion, setLoading, setError, resetQuestions } =
  questionSlice.actions;
 export default questionSlice.reducer;
