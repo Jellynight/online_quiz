@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { nextQuestion } from "./questionSlice";
 import { addAnsweredQuestion } from "../analytics/resultSlice";
 
-const QuestionCard = () => {
+const QuestionCard = ({ quizEnded }) => {
  const currentQuestion = useSelector(
   (state) => state.questions.currentQuestion,
  );
@@ -25,6 +25,9 @@ const QuestionCard = () => {
   ...currentQuestion.incorrect_answers,
  ].sort();
 
+ const handleEnd = () => {
+  quizEnded(true);
+ };
  return (
   <div className="questionCard">
    <h2>{currentQuestion.question}</h2>
@@ -49,8 +52,10 @@ const QuestionCard = () => {
     ))}
    </form>
    <br></br>
+   
    <button onClick={handleClick}>Next Question</button>
    <br></br>
+   <button onClick={handleEnd}>End Quiz</button>
   </div>
  );
 };
