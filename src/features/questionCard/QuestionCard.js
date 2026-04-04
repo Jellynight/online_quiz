@@ -10,7 +10,6 @@ const QuestionCard = ({ quizEnded }) => {
  );
  const questions = useSelector((state) => state.questions.questions);
  const loading = useSelector((state) => state.questions.loading);
- const answeredQuestions = useSelector((state) => state.results.answeredQuestions);
  const currentQuestionIndex = useSelector((state) => state.questions.currentQuestionIndex);
  const dispatch = useDispatch();
  const [isActive, setIaActive] = useState(false);
