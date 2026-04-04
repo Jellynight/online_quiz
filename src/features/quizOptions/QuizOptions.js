@@ -6,7 +6,7 @@ import getCategories from "./getCategories";
 import { setCategories } from "./categorySlice";
 import getQuestions from "../questionCard/getQuestions";
 
-function QuizOptions() {
+function QuizOptions({ quizEnded }) {
  const categories = useSelector((state) => state.categories.items);
  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
@@ -31,7 +31,9 @@ function QuizOptions() {
 
  const handleSubmit = (e) => {
   e.preventDefault();
+  quizEnded(false);
   dispatch(getQuestions({ ...inputs }));
+  
  }
 
  return (
