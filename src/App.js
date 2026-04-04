@@ -12,16 +12,13 @@ import { resetQuestions } from "./features/questionCard/questionSlice.js";
 function App() {
  const [quizEnded, setQuizEnded] = useState(false);
 
-const dispatch = useDispatch();
+ const dispatch = useDispatch();
 
- const handleClick = () => {
-  setQuizEnded(true);
- };
  const handleReset = () => {
   dispatch(resetScore());
   dispatch(resetQuestions());
   setQuizEnded(false);
- }
+ };
 
  return (
   <div className="App">
@@ -34,13 +31,13 @@ const dispatch = useDispatch();
    <div>
     {quizEnded ? (
      <div className="start">
-      <Results />
       <button onClick={handleReset}>Reset</button>
+      <Results />
+      
      </div>
     ) : (
      <div>
-      <QuestionCard />
-      <button onClick={handleClick}>End Quiz</button>
+      <QuestionCard quizEnded={setQuizEnded} />
      </div>
     )}
    </div>

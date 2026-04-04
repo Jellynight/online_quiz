@@ -39,7 +39,8 @@ function QuizOptions({ quizEnded }) {
  return (
   <div>
    <form className="menu" onSubmit={handleSubmit}>
-    <h3 className="menubanner">Quiz Setup:</h3>
+    <h3 className="menubanner">To start the quiz select your preferences below then press the button</h3>
+    <p>To get your results use the button at the bottom to end the quiz. <br></br>You need to reset the results each time you have finished to get the next quiz results</p>
     <label >Select Categorie</label>
     <select name="category" className="categoryForm" value={inputs.category} onChange={handleChange}>
      {categories.map((category) => (
