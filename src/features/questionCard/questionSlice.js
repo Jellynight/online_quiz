@@ -1,5 +1,5 @@
 /** @format */
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import getQuestions from "./getQuestions";
 
 const questionSlice = createSlice({
