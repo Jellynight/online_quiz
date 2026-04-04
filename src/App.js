@@ -1,57 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+/** @format */
+import React from "react";
+import QuizOptions from "./features/quizOptions/QuizOptions.js";
+import "./App.css";
+import QuestionCard from "./features/questionCard/QuestionCard.js";
+import { useState } from "react";
+
+import Results from "./features/analytics/Results.js";
 
 function App() {
+  const [quizEnded, setQuizEnded] = useState(false);
+  
+  const handleClick = () => {
+    setQuizEnded(true);
+  }
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+   <div className="App">
+    <header className="App-header">
+     <h1>Welcome to Quiz<span>IQ</span>u</h1>
+    </header>
+    <QuizOptions quizEnded={setQuizEnded}/>
+    <div>
+      {quizEnded ? (
+        <div className="start">
+          <Results />
+        </div>
+      ) : (
+        <div>
+        <QuestionCard />
+        <button onClick={handleClick}>End Quiz</button>
+        </div>
+      )}
     </div>
+   </div>
   );
 }
 
