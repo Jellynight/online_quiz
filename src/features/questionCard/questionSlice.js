@@ -53,6 +53,6 @@ const questionSlice = createSlice({
   },
 });
 
-export const { nextQuestion, setCurrentQuestion, setLoading, setError } =
+export const { nextQuestion, setCurrentQuestion, setLoading, setError, resetQuestions } =
  questionSlice.actions;
 export default questionSlice.reducer;
