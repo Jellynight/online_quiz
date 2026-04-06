@@ -33,7 +33,6 @@ function App() {
      <div className="start">
       <button onClick={handleReset}>Reset</button>
       <Results />
-      
      </div>
     ) : (
      <div>
