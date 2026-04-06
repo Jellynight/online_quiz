@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { nextQuestion } from "./questionSlice";
 import { addAnsweredQuestion } from "../analytics/resultSlice";
+import { decodeHtml } from "../htmldecoder/decodeHtml";
 
 const QuestionCard = ({ quizEnded }) => {
  const currentQuestion = useSelector(
@@ -23,11 +24,7 @@ const QuestionCard = ({ quizEnded }) => {
   dispatch(nextQuestion());
  };
 
- function decodeHtml(html) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
-  return doc.documentElement.textContent;
-}
+ 
 
 
  const allAnswers = [
@@ -43,9 +40,9 @@ const QuestionCard = ({ quizEnded }) => {
   setIaActive(answer);
   dispatch(
    addAnsweredQuestion({
-    question: currentQuestion.question,
-    answer: answer,
-    correct_answer: currentQuestion.correct_answer,
+    question: decodeHtml(currentQuestion.question),
+    answer: decodeHtml(answer),
+    correct_answer: decodeHtml(currentQuestion.correct_answer),
    }),
   );
  };
