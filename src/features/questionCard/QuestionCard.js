@@ -56,7 +56,7 @@ const QuestionCard = ({ quizEnded }) => {
     {allAnswers.map((e) => (
      <button
       className={isActive === e ? "active" : "answer"}
-      key={e.id}
+      key={e}
       type="button"
       value={e}
       onClick={() => handleAnswerClick(e)}>

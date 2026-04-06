@@ -26,12 +26,10 @@ const Results = () => {
    ))}
    <p>Incorrect Answers:</p>
    {Object.entries(incorrectAnswers).map(([key, value]) => (
-    <div>
      <p key={key} className="incorrect">
       Question: {key} <br></br>Your Answer:{value} <br></br> Correct Answer:{" "}
       {allQuestions.find((q) => q.question === key)?.correct_answer}
      </p>
-    </div>
    ))}
   </div>
  );
