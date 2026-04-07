@@ -1,15 +1,18 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+/** @format */
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import App from "./App";
+import "@testing-library/jest-dom";
+test("renders heading", () => {
+ render(
+  <Provider store={store}>
+   <App />
+  </Provider>,
+ );
+ const text = screen.getByText(/Welcome to Quiz/i);
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+ expect(text).toBeInTheDocument();
 });

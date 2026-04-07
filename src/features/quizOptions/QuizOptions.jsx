@@ -13,6 +13,7 @@ function QuizOptions({ quizEnded }) {
   number: 10,
   category: "9",
   difficulty: "easy",
+  quizMode: "multiple",
  });
 
  useEffect(() => {
@@ -46,41 +47,54 @@ function QuizOptions({ quizEnded }) {
      You need to reset the results each time you have finished to get the next
      quiz results
     </p>
-    <label>Select Categorie</label>
-    <select
-     name="category"
-     className="categoryForm"
-     value={inputs.category}
-     onChange={handleChange}>
-     {categories.map((category) => (
-      <option key={category.id} value={category.id}>
-       {category.name}
-      </option>
-     ))}
-    </select>
-    <br></br>
-    <label>Select Difficulty</label>
-    <select
-     name="difficulty"
-     className="difficulty"
-     value={inputs.difficulty}
-     onChange={handleChange}>
-     <option value="easy">Easy</option>
-     <option value="medium">Medium</option>
-     <option value="hard">Hard</option>
-    </select>
-    <br></br>
-    <label htmlFor="numOfQuestions" className="">
-     How Many Questions?
+    <label>
+     Select Categorie:
+     <select
+      name="category"
+      className="categoryForm"
+      value={inputs.category}
+      onChange={handleChange}>
+      {categories.map((category) => (
+       <option key={category.id} value={category.id}>
+        {category.name}
+       </option>
+      ))}
+     </select>
     </label>
-    <input
-     type="number"
-     name="number"
-     className="number"
-     min="1"
-     max="25"
-     value={inputs.number}
-     onChange={handleChange}></input>
+    <br></br>
+    <label>
+     Select Difficulty:
+     <select
+      name="difficulty"
+      className="difficulty"
+      value={inputs.difficulty}
+      onChange={handleChange}>
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+     </select>
+    </label>
+    <br></br>
+    <label>
+     Number of Questions:
+     <input
+      type="number"
+      className="number"
+      name="number"
+      min="1"
+      max="25"
+      value={inputs.number}
+      onChange={handleChange}></input>
+    </label>
+    <br></br>
+    <label>
+     Choose Quiz Mode:
+     <select name="quizMode" className="quizzMode" value={inputs.quizMode} onChange={handleChange}>
+      <option value="multiple">Multiple Choice</option>
+      <option value="boolean">True / false</option>
+      <option value="">Mix of Both</option>
+     </select>
+    </label>
     <br></br>
     <button className="submitBtn" type="submit">
      Start the Quiz
