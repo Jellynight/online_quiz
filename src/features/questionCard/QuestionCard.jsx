@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { nextQuestion } from "./questionSlice";
-import { addAnsweredQuestion } from "../analytics/resultSlice";
+import { addAnsweredQuestion } from "../results/resultSlice";
 import { decodeHtml } from "../htmldecoder/decodeHtml";
 
 const QuestionCard = ({ quizEnded }) => {
@@ -52,7 +52,7 @@ const QuestionCard = ({ quizEnded }) => {
    <h2>
     {currentQuestionIndex + 1}. {decodeHtml(currentQuestion.question)}
    </h2>
-   <h3>Is It?</h3>
+   
    <div className="answers">
     {allAnswers.map((e) => (
      <button
@@ -63,18 +63,20 @@ const QuestionCard = ({ quizEnded }) => {
       onClick={() => handleAnswerClick(e)}>
       {decodeHtml(e)}
      </button>
+     
     ))}
    </div>
    <br></br>
+   <div className="actionbox">
    {questions.length === currentQuestionIndex + 1 ? (
-    <button type="submit" onClick={handleEnd}>
+    <button type="submit" onClick={handleEnd} className="endquiz">
      End Quiz
     </button>
    ) : (
-    <button type="submit" onClick={handleClick}>
+    <button type="submit" onClick={handleClick} className="nextbutton">
      Next Question
     </button>
-   )}
+   )}</div>
   </div>
  );
 };

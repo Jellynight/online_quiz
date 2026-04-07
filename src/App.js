@@ -5,8 +5,8 @@ import "./App.css";
 import QuestionCard from "./features/questionCard/QuestionCard.jsx";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Results from "./features/analytics/Results.jsx";
-import { resetScore } from "./features/analytics/resultSlice.js";
+import Results from "./features/results/Results.jsx";
+import { resetScore } from "./features/results/resultSlice.js";
 import { resetQuestions } from "./features/questionCard/questionSlice.js";
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
   return (
    <div className="Quizbox">
     {quizEnded ? (
-     <div className="start">
+     <div className="reset">
       <button onClick={handleReset}>Reset</button>
       <Results />
      </div>

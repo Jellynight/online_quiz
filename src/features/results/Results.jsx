@@ -1,6 +1,7 @@
 /** @format */
 
 import { useSelector } from "react-redux";
+import "./results.css"
 
 const Results = () => {
  const score = useSelector((state) => state.results.score);
@@ -14,17 +15,17 @@ const Results = () => {
  const allQuestions = useSelector((state) => state.results.answeredQuestions);
  return (
   <div className="results">
-   <h2>Your Results</h2>
-   <p>
+   <h1>Your Results</h1>
+   <p className="yourscore">
     Score: {score}/{totalQuestions}
    </p>
-   <p>Correct Answers: </p>
+   <h2>Correct Answers: </h2>
    {Object.entries(correctAnswers).map(([key, value]) => (
     <p key={key} className="correct">
      Question: {" " + key} <br></br>Answer: {" " + value}
     </p>
    ))}
-   <p>Incorrect Answers:</p>
+   <h2>Incorrect Answers:</h2>
    {Object.entries(incorrectAnswers).map(([key, value]) => (
      <p key={key} className="incorrect">
       Question: {key} <br></br>Your Answer:{" " + value} <br></br> Correct Answer:

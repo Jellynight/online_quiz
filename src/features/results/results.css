@@ -1,0 +1,85 @@
+/** @format */
+
+.results {
+ max-width: 90%;
+ margin: auto;
+}
+.reset button {
+ background-color: rgb(54, 128, 128);
+ box-shadow: 0 5px #2d6a31;
+ transition: all 0.2s ease-in-out;
+}
+
+.reset button:active {
+ box-shadow: 0 2px #2d6a31 inset; /* Smaller shadow to look pressed */
+ transform: translateY(3px);
+}
+
+.incorrect {
+ background-color: rgb(255, 188, 188);
+ border-bottom: 2px solid black;
+ padding-bottom: 5px;
+ border-radius: 15px;
+ padding-top: 10px;
+ box-shadow: 2px 2px 2px #777777;
+}
+
+.correct {
+ padding-top: 10px;
+ padding-bottom: 5px;
+ border-radius: 15px;
+ background-color: rgb(175, 228, 228);
+ border-bottom: 2px solid rgb(0, 0, 0);
+ box-shadow: 2px 2px 2px #777777;
+}
+
+.yourscore {
+ font-size: 3em;
+ display: inline-block;
+ position: relative;
+ font-weight: bold;
+ color: black;
+ background: white;
+}
+
+.yourscore:before,
+.yourscore:after {
+ content: "";
+ position: absolute;
+ left: -2px;
+ top: -2px;
+ background: linear-gradient(
+  45deg,
+  #fb0094,
+  #0000ff,
+  #00ff00,
+  #ffff00,
+  #ff0000,
+  #fb0094,
+  #0000ff,
+  #00ff00,
+  #ffff00,
+  #ff0000
+ );
+ background-size: 400%;
+ width: calc(100% + 4px);
+ height: calc(100% + 4px);
+ z-index: -1;
+ animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+ 0% {
+  background-position: 0 0;
+ }
+ 50% {
+  background-position: 400% 0;
+ }
+ 100% {
+  background-position: 0 0;
+ }
+}
+
+.yourscore:after {
+ filter: blur(50px);
+}
