@@ -11,7 +11,7 @@ const Results = () => {
  const totalQuestions = useSelector(
   (state) => state.results.answeredQuestions.length,
  );
- const allQuestions = useSelector((state) => state.questions.questions);
+ const allQuestions = useSelector((state) => state.results.answeredQuestions);
  return (
   <div className="results">
    <h2>Your Results</h2>
@@ -21,17 +21,15 @@ const Results = () => {
    <p>Correct Answers: </p>
    {Object.entries(correctAnswers).map(([key, value]) => (
     <p key={key} className="correct">
-     Question: {key} <br></br>Answer: {value}
+     Question: {" " + key} <br></br>Answer: {" " + value}
     </p>
    ))}
    <p>Incorrect Answers:</p>
    {Object.entries(incorrectAnswers).map(([key, value]) => (
-    <div>
      <p key={key} className="incorrect">
-      Question: {key} <br></br>Your Answer:{value} <br></br> Correct Answer:{" "}
-      {allQuestions.find((q) => q.question === key)?.correct_answer}
+      Question: {key} <br></br>Your Answer:{" " + value} <br></br> Correct Answer:
+      {" " + allQuestions.find((q) => q.question === key)?.correct_answer}
      </p>
-    </div>
    ))}
   </div>
  );

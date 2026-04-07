@@ -15,7 +15,7 @@ const QuestionCard = ({ quizEnded }) => {
   (state) => state.questions.currentQuestionIndex,
  );
  const dispatch = useDispatch();
- const [isActive, setIaActive] = useState(false);
+ const [isActive, setIsActive] = useState(false);
 
  if (loading) return <p>Loading questions…</p>;
  if (!questions || questions.length === 0)
@@ -23,6 +23,7 @@ const QuestionCard = ({ quizEnded }) => {
 
  const handleClick = () => {
   // Logic to move to the next question
+  setIsActive(false)
   dispatch(nextQuestion());
  };
 
@@ -36,7 +37,7 @@ const QuestionCard = ({ quizEnded }) => {
  };
 
  const handleAnswerClick = (answer) => {
-  setIaActive(answer);
+  setIsActive(answer);
   dispatch(
    addAnsweredQuestion({
     question: decodeHtml(currentQuestion.question),
@@ -52,23 +53,27 @@ const QuestionCard = ({ quizEnded }) => {
     {currentQuestionIndex + 1}. {decodeHtml(currentQuestion.question)}
    </h2>
    <h3>Is It?</h3>
-   <form className="answers">
+   <div className="answers">
     {allAnswers.map((e) => (
      <button
-      className={isActive === e ? "active" : "answer"}
-      key={e.id}
+      className={isActive === e ? "active" : "inActive"}
+      key={e}
       type="button"
       value={e}
       onClick={() => handleAnswerClick(e)}>
       {decodeHtml(e)}
      </button>
     ))}
-   </form>
+   </div>
    <br></br>
    {questions.length === currentQuestionIndex + 1 ? (
-    <button onClick={handleEnd}>End Quiz</button>
+    <button type="submit" onClick={handleEnd}>
+     End Quiz
+    </button>
    ) : (
-    <button onClick={handleClick}>Next Question</button>
+    <button type="submit" onClick={handleClick}>
+     Next Question
+    </button>
    )}
   </div>
  );

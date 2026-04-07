@@ -24,25 +24,14 @@ const resultSlice = createSlice({
         state.answeredQuestions.push(action.payload);
       }
     },
-    incrementScore: (state) => {
-      state.score += 1;
-    },
     resetScore: (state) => {
       state.score = 0;
       state.correctAnswers = {};
       state.incorrectAnswers = {};
       state.answeredQuestions = [];
     },
-    addCorrectAnswer: (state, action) => {
-      const { questionId, answer } = action.payload;
-      state.correctAnswers[questionId] = answer;
-    },
-    addIncorrectAnswer: (state, action) => {
-      const { questionId, answer } = action.payload;
-      state.incorrectAnswers[questionId] = answer;
-    },
   }
 });
 
 export const { actions, reducer } = resultSlice;
-export const { addAnsweredQuestion, incrementScore, resetScore, addCorrectAnswer, addIncorrectAnswer } = actions;
+export const { addAnsweredQuestion, resetScore } = actions;
