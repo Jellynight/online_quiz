@@ -10,6 +10,7 @@ import Home from "./pages/home/Home.jsx";
 import QuizOptions from "./pages/options/jsx/QuizOptions.jsx";
 import QuestionCard from "./pages/questionCard/jsx/QuestionCard.jsx";
 import Results from "./pages/results/jsx/Results.jsx";
+import About from "./pages/about/About.jsx";
 //import reportWebVitals from "./reportWebVitals.js";
 import { optionsLoader } from "./loaders/optionsLoader.js";
 import { questionsLoader } from "./loaders/questionsLoader";
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
    { path: "options", element: <QuizOptions />, loader: optionsLoader },
    { path: "quiz", element: <QuestionCard />, loader: questionsLoader },
    { path: "results", element: <Results /> },
+   { path: "about", element: <About />},
   ],
  },
 ]);
