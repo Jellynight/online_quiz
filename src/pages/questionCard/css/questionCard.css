@@ -1,0 +1,97 @@
+/** @format */
+
+.questionCard {
+ display: flex;
+ flex-direction: column;
+ margin: 40px auto;
+ max-width: 80%;
+}
+
+.answersbox {
+ display: flex;
+ flex-direction: column;
+ border-radius: 30px;
+}
+
+.inactive {
+ width: auto;
+ display: flex;
+ padding: 10px 15px;
+ font-size: 16px;
+ background-color: #704cb6;
+ color: white;
+ border-radius: 15px;
+ cursor: pointer;
+ border: 2px solid black;
+ transition: all 0.2s ease-in-out;
+ justify-content: center;
+ margin-top: 20px;
+ box-shadow: 0 5px #2d3b6a;
+ min-width: 20%;
+}
+
+.active {
+ width: auto;
+ display: flex;
+ padding: 10px 15px;
+ font-size: 16px;
+ background-color: #deb887;
+ color: black;
+ box-shadow: 0 2px #ad7223 inset;
+ transform: translateY(3px);
+ border-color: #ad7223;
+ min-width: 20%;
+ border-radius: 15px;
+ margin-top: 20px;
+ justify-content: center;
+}
+
+.actionbox {
+ display: flex;
+}
+
+.endquizbutton {
+ color: white;
+ width: 200px;
+ display: flex;
+ padding: 10px 15px;
+ font-size: 16px;
+ background-color: rgb(54, 128, 128);
+ box-shadow: 0 5px #2d6a31;
+ transition: all 0.1s ease-in-out;
+ min-width: 20%;
+ border-radius: 15px;
+ cursor: pointer;
+ border: 2px solid #2d6a31;
+ transition: all 0.2s ease-in-out;
+ justify-content: center;
+ margin: 10px auto 10px auto;
+}
+
+.endquizbutton:active {
+ box-shadow: 0 2px #2d6a31; /* Smaller shadow to look pressed */
+ transform: translateY(3px);
+}
+
+.nextbutton {
+ color: white;
+ width: 200px;
+ display: flex;
+ padding: 10px 15px;
+ font-size: 16px;
+ background-color: rgb(54, 128, 128);
+ box-shadow: 0 5px #2d6a31;
+ transition: all 0.1s ease-in-out;
+ min-width: 20%;
+ border-radius: 15px;
+ cursor: pointer;
+ border: 2px solid #2d6a31;
+ transition: all 0.2s ease-in-out;
+ justify-content: center;
+ margin: 10px auto 10px auto;
+}
+
+.nextbutton:active {
+ box-shadow: 0 2px #2d6a31 inset; /* Smaller shadow to look pressed */
+ transform: translateY(3px);
+}

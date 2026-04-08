@@ -4,8 +4,8 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-import { store } from "../../app/store";
-import App from "../../App";
+import { store } from "../../../app/store";
+import App from "../../../App";
 import "@testing-library/jest-dom";
 import { expect } from "@jest/globals";
 
