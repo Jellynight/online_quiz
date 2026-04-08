@@ -11,7 +11,7 @@ function Home() {
     </h1>
    </header>
    <h3 className="button_banner">
-    To start First select your quiz preferences.
+    To start first select your quiz preferences.
    </h3>
    <Link to="/options" className="start-btn">Quiz Options</Link>
   </div>
