@@ -1,61 +1,51 @@
 /** @format */
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import getCategories from "./getCategories";
-import { setCategories } from "./categorySlice";
-import getQuestions from "../questionCard/getQuestions";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-function QuizOptions({ quizEnded }) {
- const categories = useSelector((state) => state.categories.items);
+import getQuestions from "../../questionCard/thunk/getQuestions";
+import { useLoaderData, useNavigate } from "react-router-dom";
+
+import "../css/quizOptions.css";
+
+function QuizOptions() {
+ const navigate = useNavigate();
+ const { trivia_categories } = useLoaderData();
  const dispatch = useDispatch();
+
+ //setting up state
  const [inputs, setInputs] = useState({
   number: 10,
-  category: "9",
+  category: 9,
   difficulty: "easy",
   quizMode: "multiple",
  });
 
- useEffect(() => {
-  const fetchCategories = async () => {
-   const result = await dispatch(getCategories());
-   if (getCategories.fulfilled.match(result)) {
-    dispatch(setCategories(result.payload.trivia_categories));
-   }
-  };
-  fetchCategories();
- }, [dispatch]);
-
- const handleChange = (e) => {
+ // logic save user selections/options
+ const handleUserSelection = (e) => {
   setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
  };
 
+ // triggers the API request to get the questions using the users desired selections as arguments
  const handleSubmit = (e) => {
   e.preventDefault();
-  quizEnded(false);
   dispatch(getQuestions({ ...inputs }));
+
+  navigate("/quiz");
  };
 
  return (
-  <>
-   <form className="menu" onSubmit={handleSubmit}>
-    <h3 className="menubanner">
-     To start the quiz select your preferences below then press the button
-    </h3>
-    <p>
-     To get your results use the button at the bottom to end the quiz. <br></br>
-     You need to reset the results each time you have finished to get the next
-     quiz results
-    </p>
+  
+   <form className="optioncontainer" onSubmit={handleSubmit}>
     <div className="options">
-     <label>
+     <label className="categorycontainer">
       Select Categorie:
       <select
        name="category"
-       className="categoryForm"
+       className="categorydropbox"
        value={inputs.category}
-       onChange={handleChange}>
-       {categories.map((category) => (
+       onChange={handleUserSelection}>
+       {trivia_categories.map((category) => (
         <option key={category.id} value={category.id}>
          {category.name}
         </option>
@@ -63,20 +53,22 @@ function QuizOptions({ quizEnded }) {
       </select>
      </label>
      <br></br>
-     <label>
+     <label className="difficultycontainer">
       Select Difficulty:
       <select
        name="difficulty"
        className="difficulty"
        value={inputs.difficulty}
-       onChange={handleChange}>
+       onChange={handleUserSelection}>
        <option value="easy">Easy</option>
        <option value="medium">Medium</option>
        <option value="hard">Hard</option>
       </select>
      </label>
      <br></br>
-     <label htmlFor="number">Number of Questions:</label>
+     <label htmlFor="number" className="numberbanner">
+      Number of Questions:
+     </label>
      <input
       id="number"
       type="number"
@@ -85,15 +77,15 @@ function QuizOptions({ quizEnded }) {
       min="1"
       max="25"
       value={inputs.number}
-      onChange={handleChange}></input>
+      onChange={handleUserSelection}></input>
      <br></br>
-     <label>
+     <label className="modecontainer">
       Choose Quiz Mode:
       <select
        name="quizMode"
        className="quizzMode"
        value={inputs.quizMode}
-       onChange={handleChange}>
+       onChange={handleUserSelection}>
        <option value="multiple">Multiple Choice</option>
        <option value="boolean">True / false</option>
        <option value="">Mix of Both</option>
@@ -101,11 +93,11 @@ function QuizOptions({ quizEnded }) {
      </label>
     </div>
     <br></br>
-    <button className="submitBtn" type="submit">
+    <button className="submitbtn" type="submit">
      Start the Quiz
     </button>
    </form>
-  </>
+
  );
 }
 

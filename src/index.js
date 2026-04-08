@@ -1,20 +1,44 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-//import reportWebVitals from './reportWebVitals.js';
-import './index.css';
+/** @format */
 
-const container = document.getElementById('root');
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./app/js/App";
+import Home from "./pages/home/Home.jsx";
+import QuizOptions from "./pages/options/jsx/QuizOptions.jsx";
+import QuestionCard from "./pages/questionCard/jsx/QuestionCard.jsx";
+import Results from "./pages/results/jsx/Results.jsx";
+//import reportWebVitals from "./reportWebVitals.js";
+import { optionsLoader } from "./loaders/optionsLoader.js";
+import { questionsLoader } from "./loaders/questionsLoader";
+
+import "./index.css";
+
+const router = createBrowserRouter([
+ {
+  path: "/",
+  element: <App />,
+  HydrateFallback: <p>Loading…</p>,
+  children: [
+   { index: true, element: <Home /> },
+   { path: "options", element: <QuizOptions />, loader: optionsLoader },
+   { path: "quiz", element: <QuestionCard />, loader: questionsLoader },
+   { path: "results", element: <Results /> },
+  ],
+ },
+]);
+
+const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+ <React.StrictMode>
+  <Provider store={store}>
+   <RouterProvider router={router} />
+  </Provider>
+ </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

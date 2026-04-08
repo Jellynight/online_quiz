@@ -2,15 +2,27 @@
 
 .results {
  max-width: 90%;
- margin: auto;
+ margin: 20px auto;
 }
-.reset button {
+.reset-btn {
+ color: white;
+ width: 200px;
+ display: flex;
+ padding: 10px 15px;
+ font-size: 16px;
  background-color: rgb(54, 128, 128);
  box-shadow: 0 5px #2d6a31;
+ transition: all 0.1s ease-in-out;
+ min-width: 20%;
+ border-radius: 15px;
+ cursor: pointer;
+ border: 2px solid #2d6a31;
  transition: all 0.2s ease-in-out;
+ justify-content: center;
+ margin: 10px auto 10px auto;
 }
 
-.reset button:active {
+.reset-btn:active {
  box-shadow: 0 2px #2d6a31 inset; /* Smaller shadow to look pressed */
  transform: translateY(3px);
 }

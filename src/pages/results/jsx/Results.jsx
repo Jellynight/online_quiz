@@ -1,7 +1,10 @@
 /** @format */
 
-import { useSelector } from "react-redux";
-import "./results.css"
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { resetScore } from "../slice/resultSlice";
+import { resetQuestions } from "../../questionCard/slice/questionSlice";
+import "../css/results.css"
 
 const Results = () => {
  const score = useSelector((state) => state.results.score);
@@ -13,8 +16,17 @@ const Results = () => {
   (state) => state.results.answeredQuestions.length,
  );
  const allQuestions = useSelector((state) => state.results.answeredQuestions);
+ const navigate= useNavigate();
+const dispatch = useDispatch();
+ const handleReset = () => {
+  dispatch(resetScore())
+  dispatch(resetQuestions())
+  navigate("/");
+ };
+
  return (
   <div className="results">
+    <button className="reset-btn" onClick={handleReset}>Reset</button>
    <h1>Your Results</h1>
    <p className="yourscore">
     Score: {score}/{totalQuestions}
