@@ -2,6 +2,9 @@
 # Online_quiz
 Online quiz CodeCademy / LearningPeople project
 
+# App deployed @: 
+- https://quiziqu.netlify.app/
+
 ## About
  This projects aim was to build an online quiz where users can answer a series of questions and recieve feed-back or graded on thier performance. The project uses a free API called Open trivia Database. When the app opens there is a call for the categories then the user selects what category, number of questions, difficulty, and mode( true/false, multible, any) they want. Then you pick an answer and move onto the next question. Once all the questions have been answered you will recieve the results by ending the quiz. The results can then be reset after.   
 
