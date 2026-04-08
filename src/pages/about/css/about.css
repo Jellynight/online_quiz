@@ -1,0 +1,56 @@
+/** @format */
+
+.about-box {
+ align-items: center;
+}
+
+.navbar {
+ display: flex;
+}
+
+.home-btn {
+ width: 200px;
+ display: flex;
+ padding: 10px 15px;
+ font-size: 16px;
+ background-color: #704cb6;
+ color: white;
+ border-radius: 15px;
+ cursor: pointer;
+ border: 2px solid black;
+ transition: all 0.2s ease-in-out;
+ justify-content: center;
+ margin: 10px auto 10px auto;
+ box-shadow: 0 5px #2d3b6a;
+ min-width: 20%;
+ text-decoration: none;
+}
+
+.home-btn:active {
+ box-shadow: 0 2px #2d3b6a inset; /* Smaller shadow to look pressed */
+ transform: translateY(3px);
+}
+
+.option-btn {
+ width: 200px;
+ display: flex;
+ padding: 10px 15px;
+ font-size: 16px;
+ background-color: #704cb6;
+ color: white;
+ border-radius: 15px;
+ cursor: pointer;
+ border: 2px solid black;
+ transition: all 0.2s ease-in-out;
+ justify-content: center;
+ margin: 10px auto 10px auto;
+ box-shadow: 0 5px #2d3b6a;
+ min-width: 20%;
+ text-decoration: none;
+ align-items: center;
+}
+
+.option-btn:active {
+ box-shadow: 0 2px #2d3b6a inset; /* Smaller shadow to look pressed */
+ transform: translateY(3px);
+}
