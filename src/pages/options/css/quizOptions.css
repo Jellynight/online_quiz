@@ -2,32 +2,38 @@
 .optioncontainer {
  display: flex;
  flex-direction: column;
- margin: 40px auto;
- max-width: 90%;
+ margin: 30px auto;
+ width: 50%;
+ overflow: hidden;
 }
 
 .number {
  border-radius: 10px;
  background-color: rgb(175, 228, 228);
- padding-left: 15px;
- padding-bottom: 5px;
- padding-top: 5px;
+ padding-bottom: 10px;
+ padding-top: 10px;
  margin: auto;
  display: flex;
  border: 1px solid black;
+ padding-left: 0px;
+ padding-right: 0px;
+ width: stretch;
+ padding: 10px 0px;
 }
 
 select {
  border-radius: 10px;
  background-color: rgb(175, 228, 228);
- padding: 5px;
+ padding: 10px;
 }
 
 label {
+  line-height: 40px;
  color: #2d6a31;
  display: flex;
  flex-direction: column;
  margin: auto;
+ width: 100%;
 }
 
 .options {
@@ -37,14 +43,13 @@ label {
 
 .submitbtn {
  color: white;
- width: auto;
+ width: 100%;
  display: flex;
  padding: 10px 15px;
  font-size: 16px;
  background-color: rgb(54, 128, 128);
  box-shadow: 0 5px #2d6a31;
  transition: all 0.1s ease-in-out;
- min-width: 20%;
  border-radius: 15px;
  cursor: pointer;
  border: 2px solid #2d6a31;
