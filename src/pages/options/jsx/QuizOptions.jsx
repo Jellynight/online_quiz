@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import getQuestions from "../../questionCard/thunk/getQuestions";
 import { useLoaderData, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import "../css/quizOptions.css";
 
 function QuizOptions() {
@@ -95,6 +95,8 @@ function QuizOptions() {
    <button className="submitbtn" type="submit">
     Start the Quiz
    </button>
+   <br></br>
+   <Link to="/" className="back-btn">Back to Home Page</Link>
   </form>
  );
 }
